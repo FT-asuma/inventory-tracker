@@ -1,12 +1,16 @@
-'use client'
+"use client";
 
-import { useRequireRole } from '@/hooks/useAuth'
-import Sidebar from '@/components/layout/Sidebar'
-import AuthGuard from '@/components/layout/AuthGuard'
-
-export default function SellerLayout({ children }: { children: React.ReactNode }) {
-  const checking = useRequireRole('seller')
-
+import { useRequireRole } from "@/hooks/useAuth";
+import Sidebar from "@/components/layout/Sidebar";
+import AuthGuard from "@/components/layout/AuthGuard";
+import Header from "@/components/layout/Header";
+export default function SellerLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const checking = useRequireRole("seller");
+  const role = "user";
   return (
     <AuthGuard checking={checking}>
       <div className="flex h-screen overflow-hidden">
@@ -16,12 +20,12 @@ export default function SellerLayout({ children }: { children: React.ReactNode }
           userName="Seller"
           userInitials="SL"
         />
-        <main className="flex-1 overflow-y-auto bg-[#F4F6FA]">
-          <div className="p-6">
-            {children}
-          </div>
-        </main>
+        {/* Right side: header + scrollable content */}
+        <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
+          <Header props={{ role }} />
+          <main className="flex-1 overflow-y-auto bg-white">{children}</main>
+        </div>
       </div>
     </AuthGuard>
-  )
+  );
 }

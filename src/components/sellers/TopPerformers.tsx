@@ -1,4 +1,4 @@
-import { usersList } from '@/data/sellers-list'
+import { usersList } from '@/data/users'
 import { Award } from 'lucide-react'
 
 export default function TopPerformers() {

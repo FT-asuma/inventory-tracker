@@ -16,10 +16,13 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-export default function Header() {
+export default function Header(info: {
+  props: {
+    role: string | undefined
+  }
+}) {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showAllNotifications, setShowAllNotifications] = useState(false);
-
   const notifications = [
     {
       id: 1,
@@ -130,7 +133,7 @@ export default function Header() {
 
         {/* Center: Quick Stats Pills */}
         <div className="hidden lg:flex items-center gap-2">
-          {infoList.map((e, index) => (
+          {info?.props?.role !== "user" && infoList.map((e, index) => (
             <div key={index} className="hidden lg:flex items-center gap-2">
               <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-gray-200 shadow-sm">
                 <div className={`w-2 h-2 rounded-full ${e.color}`} />
