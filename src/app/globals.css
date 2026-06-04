@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-poppins), sans-serif;
+
+  --color-sidebar:  #0F1117;
+  --color-surface:  #1A1D27;
+  --color-elevated: #22263A;
+  --color-accent:   #F5A623;
+  --color-accent-hover: #E8941A;
+  --color-accent-light: #FFF3DC;
+  --color-muted:    #A0A8C0;
+  --color-hint:     #4B5680;
+  --color-dark:     #1E2235;
+  --color-info:     #3B82F6;
+  --color-discount: #8B5CF6;
+  --color-page: #F4F6FA;
+  --color-accent-bg: #f5f5f8;
+  --color-stock-in:  #22C55E;
+  --color-stock-low: #F59E0B;
+  --color-stock-out: #EF4444;
+
+  --shadow-card:  0 2px 16px 0 rgba(0,0,0,0.18);
+  --shadow-popup: 0 8px 32px 0 rgba(0,0,0,0.28);
+
+  --radius-xl:  1rem;
+  --radius-2xl: 1.25rem;
+
+  --font-size-2xs: 0.65rem;
+  --line-height-2xs: 1rem;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #F4F6FA;
+    color: #1E2235;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1 { font-size: 1.75rem; font-weight: 700; }
+  h2 { font-size: 1.375rem; font-weight: 600; }
+  h3 { font-size: 1.125rem; font-weight: 600; }
+  h4 { font-size: 1rem; font-weight: 500; }
+  input, textarea, select {
+    outline: none;
+    font-family: inherit;
+  }
+
+  button { cursor: pointer; font-family: inherit; }
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+}
+
+@layer components {
+  .card {
+    @apply bg-surface rounded-2xl shadow-card p-5;
+  }
+
+  .nav-link {
+    @apply flex items-center gap-3 px-4 py-2.5 rounded-xl text-muted
+           hover:bg-elevated hover:text-white transition-all duration-200;
+  }
+
+  .nav-link.active {
+    @apply bg-elevated text-white font-medium;
+  }
+
+  .btn-primary {
+    @apply bg-accent hover:bg-accent-hover text-white font-semibold
+           px-5 py-2.5 rounded-xl transition-all duration-200;
+  }
+
+  .btn-ghost {
+    @apply border border-elevated text-muted hover:text-white
+           hover:border-muted px-5 py-2.5 rounded-xl transition-all duration-200;
+  }
+
+  .input {
+    @apply w-full bg-elevated border border-hint/30 text-white
+           placeholder:text-hint rounded-xl px-4 py-2.5
+           focus:border-accent transition-all duration-200;
+  }
+
+  .badge-in      { @apply bg-stock-in/10  text-stock-in  text-xs font-medium px-2.5 py-1 rounded-full; }
+  .badge-low     { @apply bg-stock-low/10 text-stock-low text-xs font-medium px-2.5 py-1 rounded-full; }
+  .badge-out     { @apply bg-stock-out/10 text-stock-out text-xs font-medium px-2.5 py-1 rounded-full; }
+  .badge-discount { @apply bg-discount/10 text-discount  text-xs font-medium px-2.5 py-1 rounded-full; }
+}

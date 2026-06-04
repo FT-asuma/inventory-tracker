@@ -1,0 +1,34 @@
+"use client";
+
+import { useRequireRole } from "@/hooks/useAuth";
+import Sidebar from "@/components/layout/Sidebar";
+import AuthGuard from "@/components/layout/AuthGuard";
+import Header from "@/components/layout/Header";
+
+export default function AdminLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const checking = useRequireRole("admin");
+
+  return (
+    <AuthGuard checking={checking}>
+      <div className="flex h-screen overflow-hidden">
+        <Sidebar
+          role="admin"
+          companyName="My Store"
+          userName="Admin"
+          userInitials="AD"
+          lowStockCount={0}
+        />
+
+        {/* Right side: header + scrollable content */}
+        <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
+          <Header />
+          <main className="flex-1 overflow-y-auto bg-white">{children}</main>
+        </div>
+      </div>
+    </AuthGuard>
+  );
+}
