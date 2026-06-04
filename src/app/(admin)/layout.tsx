@@ -25,7 +25,7 @@ export default function AdminLayout({
 
         {/* Right side: header + scrollable content */}
         <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
-          <Header />
+          <Header props={{role: ""}} />
           <main className="flex-1 overflow-y-auto bg-white">{children}</main>
         </div>
       </div>
